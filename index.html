@@ -320,9 +320,9 @@
     const resultBox = document.getElementById("resultBox");
     const resultTitle = document.getElementById("resultTitle");
     const resultText = document.getElementById("resultText");
-
+    
     let noCount = 0;
-
+  
     const noPhrases = [
       "No 🙃",
       "Are you sure? 😭",
@@ -368,23 +368,28 @@
     }
 
     function moveNoButton(){
-      const pad = 14;
-      const vw = window.innerWidth;
-      const vh = window.innerHeight;
+      const card = document.querySelector(".card");
 
-      const rect = noBtn.getBoundingClientRect();
-      const w = rect.width;
-      const h = rect.height;
+      const cardRect = card.getBoundingClientRect();
+      const btnRect = noBtn.getBoundingClientRect();
 
-      const x = Math.max(pad, Math.random() * (vw - w - pad));
-      const y = Math.max(pad, Math.random() * (vh - h - pad));
+      const padding = 12;
+
+      const maxX = card.clientWidth - btnRect.width - padding;
+      const maxY = card.clientHeight - btnRect.height - padding;
+
+      const x = Math.random() * maxX + padding / 2;
+      const y = Math.random() * maxY + padding / 2;
 
       noBtn.style.position = "fixed";
-      noBtn.style.left = x + "px";
-      noBtn.style.top = y + "px";
-      noBtn.style.zIndex = 99;
+      noBtn.style.left = `${x}px`;
+      noBtn.style.top = `${y}px`;
     }
 
+    #noBtn {
+        position: absolute;
+    }
+    
     yesBtn.addEventListener("click", (e)=>{
       const n = getName();
       sparkle(e.clientX, e.clientY);
@@ -476,3 +481,4 @@
   </script>
 </body>
 </html>
+
